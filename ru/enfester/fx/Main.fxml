@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?scenebuilder-stylesheet style.css?>
+
+<AnchorPane fx:id="pane" onMouseDragged="#handle" onMouseMoved="#moved" onMousePressed="#pressed" prefHeight="600.0" prefWidth="900.0" styleClass="background" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ru.enfester.fx.controllers.MainController">
+  <children>
+    <Pane fx:id="paralaxer" disable="false" layoutX="1.0" layoutY="0.0" prefHeight="600.0" prefWidth="900.0" visible="true" />
+    <Pane fx:id="paneLogin" disable="false" layoutX="1.0" layoutY="0.0" prefHeight="600.0" prefWidth="900.0" visible="true">
+      <children>
+        <Pane layoutX="192.0" layoutY="58.0" prefHeight="518.0" prefWidth="535.0" style="-fx-background-color: rgba(0,0,0,0.5);&#10;-fx-background-radius: 2;" />
+        <Button fx:id="enter" layoutX="364.0" layoutY="392.0" mnemonicParsing="false" onAction="#enterOnAction" prefHeight="45.0" prefWidth="178.0" style="" text="Войти" />
+        <TextField fx:id="login" disable="false" editable="true" focusTraversable="true" layoutX="364.0" layoutY="278.0" prefHeight="35.0" prefWidth="178.0" promptText="Логин" visible="true" />
+        <PasswordField fx:id="password" layoutX="364.0" layoutY="335.0" prefHeight="35.0" prefWidth="178.0" promptText="Пароль" />
+        <CheckBox fx:id="checksave" layoutX="373.0" layoutY="469.0" mnemonicParsing="false" pickOnBounds="false" selected="false" style="-fx-text-fill: #FFFFFF;" text="Запомнить данные" textFill="WHITE" />
+        <Label alignment="CENTER_LEFT" contentDisplay="LEFT" disable="false" focusTraversable="false" layoutX="391.0" layoutY="67.0" minHeight="55.0" mnemonicParsing="false" mouseTransparent="false" prefHeight="72.0" prefWidth="192.0" styleClass="header" text="Enfester" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_WORD_ELLIPSIS">
+          <effect>
+            <Reflection fraction="0.6150793650793651" topOpacity="0.3412698412698413" />
+          </effect>
+        </Label>
+        <ImageView fitHeight="72.0" fitWidth="72.0" layoutX="310.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
+          <effect>
+            <Reflection />
+          </effect>
+          <image>
+            <Image url="@images/logo128.png" />
+          </image>
+        </ImageView>
+        <Hyperlink fx:id="remlinck" alignment="CENTER" contentDisplay="CENTER" layoutX="364.0" layoutY="524.0" onAction="#linckOnAction" prefHeight="35.0" prefWidth="178.0" text="Вспомнить пароль" textAlignment="CENTER" textFill="#1cb6ff">
+          <font>
+            <Font size="18.0" />
+          </font>
+        </Hyperlink>
+        <ProgressIndicator fx:id="authload" layoutX="426.0" layoutY="392.0" maxHeight="160.0" maxWidth="178.0" prefHeight="45.0" prefWidth="49.0" progress="-1.0" visible="false" />
+        <Label fx:id="labelAuth" alignment="CENTER" layoutX="143.0" layoutY="208.0" prefWidth="621.0" style="" text="Введи логин и пароль используемый при регистрации на сайте" textFill="WHITE">
+          <font>
+            <Font size="16.0" fx:id="x3" />
+          </font>
+        </Label>
+        <ChoiceBox fx:id="clientList" layoutX="364.0" layoutY="336.0" prefHeight="32.0" prefWidth="178.0" visible="false">
+          <items>
+            <FXCollections fx:factory="observableArrayList">
+              <String fx:value="Item 1" />
+              <String fx:value="Item 2" />
+              <String fx:value="Item 3" />
+            </FXCollections>
+          </items>
+        </ChoiceBox>
+      </children>
+    </Pane>
+    <Pane fx:id="paneMain" layoutX="0.0" layoutY="0.0" prefHeight="600.0" prefWidth="900.0" visible="false">
+      <children>
+        <ImageView id="serverClassic" fx:id="imageAvatar" fitHeight="36.0" fitWidth="36.0" layoutX="42.0" layoutY="27.0" onMouseClicked="#buttonSkinOpenOnMouseClicked" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+          <image>
+            <Image url="@images/skinhead.png" />
+          </image>
+        </ImageView>
+        <Label id="time" fx:id="labelName" alignment="CENTER_LEFT" contentDisplay="CENTER" layoutX="86.0" layoutY="29.0" onMouseClicked="#buttonSkinOpenOnMouseClicked" prefHeight="33.0" prefWidth="205.0" style="-fx-cursor: hand;" styleClass="username" text="UserName" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+          <font>
+            <Font size="12.0" fx:id="x4" />
+          </font>
+        </Label>
+      </children>
+    </Pane>
+    <Label fx:id="labelTitle" font="$x4" layoutX="313.0" layoutY="5.0" text="Enfester launcher minecraft. Версия от ДД.ММ.ГГГГ" textFill="WHITE" />
+    <Label layoutX="859.0" layoutY="0.0" onMouseClicked="#closeOnMouseClicked" prefHeight="26.0" prefWidth="40.0" style="" styleClass="close" text="" />
+    <ImageView id="sound" fitHeight="48.0" fitWidth="48.0" layoutX="784.0" layoutY="544.0" onMouseClicked="#buttonSettingsOnCliecked" style="" styleClass="sound">
+      <image>
+        <Image url="@images/settings.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="sound" fitHeight="48.0" fitWidth="48.0" layoutX="843.0" layoutY="544.0" onMouseClicked="#soundController" smooth="true" styleClass="sound" visible="true">
+      <image>
+        <Image url="@images/suOff.png" />
+      </image>
+    </ImageView>
+    <Pane fx:id="paneLoadClient" layoutX="0.0" layoutY="81.0" prefHeight="443.0" prefWidth="901.0" style="-fx-background-color:#FFFFFF;&#10;-fx-border-color: gray;&#10;-fx-border-width: 1px;" visible="false">
+      <children>
+        <Label id="fileLabel" fx:id="labelItap" alignment="CENTER" layoutX="79.0" layoutY="14.0" prefHeight="35.0" prefWidth="742.0" text="Проверка файлов.." textFill="BLACK">
+          <font>
+            <Font size="21.0" fx:id="x5" />
+          </font>
+        </Label>
+        <Label id="speedDownload" fx:id="labelStatus" alignment="CENTER_LEFT" layoutX="14.0" layoutY="393.0" prefHeight="32.0" prefWidth="829.0" text="Загрузка.." textAlignment="CENTER" textFill="BLACK">
+          <font>
+            <Font size="14.0" fx:id="x2" />
+          </font>
+        </Label>
+        <ProgressBar fx:id="prograssBarClientDownload" layoutX="79.0" layoutY="101.0" prefHeight="32.0" prefWidth="742.0" progress="-1.0" />
+        <ProgressBar id="" fx:id="prograssBarClientDownloadGlobal" blendMode="SRC_OVER" cache="true" cacheHint="ROTATE" depthTest="ENABLE" disable="false" focusTraversable="false" layoutX="79.0" layoutY="145.0" prefHeight="32.0" prefWidth="742.0" progress="-1.0" />
+        <Label fx:id="labelSpeed" layoutX="79.0" layoutY="258.0" text="Скокрость: %s" />
+        <Label fx:id="labelTimeDownoad" layoutX="79.0" layoutY="281.0" text="Времени прошло: %s" />
+        <Label fx:id="labelTimeUn" layoutX="79.0" layoutY="305.0" text="До каонца загрузки осталось: %s" />
+        <Label fx:id="labelSizeFile" layoutX="79.0" layoutY="329.0" text="Размер файла: %s" />
+        <Label id="labelSizeFile" fx:id="labelSizeDownload" layoutX="79.0" layoutY="353.0" text="Згружено: %s" />
+        <Label id="" fx:id="labelClientDownload" alignment="CENTER" layoutX="308.0" layoutY="101.0" prefHeight="32.0" prefWidth="285.0" styleClass="progress-bar-status" text="100%" textAlignment="CENTER" textFill="WHITE">
+          <font>
+            <Font name="Roboto Regular" size="18.0" fx:id="x6" />
+          </font>
+        </Label>
+        <Label id="" fx:id="labelClientDownloadGlobal" alignment="CENTER" font="$x6" layoutX="320.0" layoutY="145.0" minHeight="21.281150000002526" prefHeight="31.9999915527369" prefWidth="261.0" styleClass="progress-bar-status-scale" text="100%" textAlignment="CENTER" textFill="WHITE" />
+      </children>
+    </Pane>
+    <Pane fx:id="paneSkin" layoutX="0.0" layoutY="0.0" prefHeight="600.0" prefWidth="765.0" style="-fx-background-color:#FFFFFF;&#10;-fx-border-color: gray;&#10;-fx-border-width: 1px;" visible="false">
+      <children>
+        <ImageView id="skin" fx:id="imageSkin" disable="false" fitHeight="361.0" fitWidth="128.0" focusTraversable="false" layoutX="53.0" layoutY="208.0" onMouseClicked="#onMouseClikedSkinUpload" opacity="1.0" pickOnBounds="true" preserveRatio="true" smooth="false" style="" styleClass="imageSkinCloak">
+          <image>
+            <Image url="@images/default.png" />
+          </image>
+        </ImageView>
+        <Button layoutX="596.0" layoutY="541.0" mnemonicParsing="false" onAction="#buttonSkinCloseOnAction" prefHeight="45.0" prefWidth="148.0" text="Сохранить" />
+        <Label layoutX="54.0" layoutY="30.0" text="Твой игровой профиль" textFill="#33b6ff">
+          <font>
+            <Font name="System Bold" size="24.0" />
+          </font>
+        </Label>
+        <Label font="$x3" layoutX="54.0" layoutY="86.0" prefHeight="105.0" prefWidth="297.0" text="Внешний вид персонажа - это то как выглядит ваш персонаж в глазах других игроков и еще один способ подчеркнуть свою индивидуальность." wrapText="true" />
+        <ImageView id="skin" fx:id="imageCloack" disable="false" fitHeight="256.0" fitWidth="128.0" focusTraversable="false" layoutX="223.0" layoutY="208.0" onMouseClicked="#onMouseClikedCloakUpload" opacity="1.0" pickOnBounds="true" preserveRatio="true" smooth="false" style="" styleClass="imageSkinCloak">
+          <image>
+            <Image url="@images/defaultBack.png" />
+          </image>
+        </ImageView>
+        <Label font="$x2" layoutX="101.0" layoutY="473.0" text="Скин" />
+        <Label font="$x2" layoutX="269.0" layoutY="473.0" text="Плащ" />
+        <Label layoutX="53.0" layoutY="516.0" prefHeight="38.0" prefWidth="284.0" text="Кликни по картинке скина, для загрузки скина, и по картинке плаща для загрузки плаща." wrapText="true" />
+        <Separator layoutX="380.0" layoutY="81.0" orientation="VERTICAL" prefHeight="473.0" />
+      </children>
+    </Pane>
+    <Pane fx:id="paneSettings" layoutX="0.0" layoutY="139.0" minHeight="0.0" minWidth="0.0" prefHeight="461.0" prefWidth="901.0" style="-fx-background-color:#FFFFFF;&#10;-fx-border-color: gray;&#10;-fx-border-width: 1px;" translateY="0.0" visible="false">
+      <children>
+        <Label fx:id="ramLabel" alignment="CENTER_RIGHT" layoutX="430.0" layoutY="20.0" prefHeight="32.0" prefWidth="194.0" text="1024 MB" textAlignment="CENTER" textFill="BLACK" wrapText="true">
+          <font>
+            <Font size="24.0" fx:id="x1" />
+          </font>
+        </Label>
+        <Button fx:id="openLog" focusTraversable="false" layoutX="675.0" layoutY="14.0" mnemonicParsing="false" onAction="#openLogOnAction" prefHeight="48.0" prefWidth="202.9998779296875" style=";-fx-background-color: #0094FF;" text="Логи Лаунчера" />
+        <Button focusTraversable="false" layoutX="14.0" layoutY="397.0" mnemonicParsing="false" onAction="#buttonSaveSettingsOnAction" prefHeight="48.0" prefWidth="203.0" text="Сохранить" />
+        <Slider fx:id="slider" blockIncrement="128.0" depthTest="DISABLE" layoutX="14.0" layoutY="93.0" majorTickUnit="128.0" max="1536.0" min="256.0" minorTickCount="128" prefHeight="14.0" prefWidth="611.999977929685" snapToTicks="true" value="512.0" />
+        <CheckBox id="fullscreen" fx:id="checkBoxFullScreen" layoutX="21.0" layoutY="153.0" mnemonicParsing="false" text="Запустить игру в полноэкранном режиме" />
+        <Label font="$x1" layoutX="19.0" layoutY="20.0" text="Лимит памяи для Java" textFill="BLACK" />
+        <Label layoutX="19.0" layoutY="49.0" prefHeight="44.0" prefWidth="620.999977929685" text="Задает ограниченичение памяти для jvm, что бы ира не заполнила всю оперативную память на компьютере." textFill="BLACK" wrapText="true" />
+        <Button id="openLogClient" focusTraversable="false" layoutX="675.0" layoutY="72.0" mnemonicParsing="false" onAction="#openLogClientOnAction" prefHeight="48.0" prefWidth="203.0" style=";-fx-background-color: #0094FF;" text="Логи Клиента" />
+        <Button id="openLog" focusTraversable="false" layoutX="670.0" layoutY="397.0" mnemonicParsing="false" onAction="#clientRestoreOnAction" prefHeight="48.0" prefWidth="202.99990000000253" style="-fx-background-color: #FF3D3D" text="Починить игру" />
+        <Label layoutX="45.0" layoutY="359.0" text="Не рекомендуется использовать эту функцию просто так." textFill="RED" />
+        <Label layoutX="45.0" layoutY="228.0" text="Максимально красивая игра!" textFill="#0c9900" />
+        <Label layoutX="45.0" layoutY="273.0" text="Приятная и игра." textFill="#0083cc" />
+        <Separator layoutX="19.0" layoutY="138.0" prefWidth="859.0" />
+        <Separator layoutX="19.0" layoutY="190.0" prefWidth="859.0" />
+        <Label layoutX="45.0" layoutY="318.0" text="Класический minecraft" textFill="#00a3ff" />
+        <RadioButton fx:id="radioButtonUltra" layoutX="21.0" layoutY="206.0" mnemonicParsing="false" text="У меня мощный компьютер - используются шейдеры, звуковые моды, визуальные эффекты." />
+        <RadioButton fx:id="radioButtonMax" layoutX="21.0" layoutY="253.0" mnemonicParsing="false" text="У меня обычный компьютер - используются звуковые моды и некоторые урашательства которые не сильно требуют рессуросв." />
+        <RadioButton fx:id="radioButtonMid" layoutX="21.0" layoutY="296.0" mnemonicParsing="false" text="У меня слабый компьютер - Остаются главные и некоторые вспомогательные моды." />
+        <RadioButton fx:id="radioButtonMin" layoutX="21.0" layoutY="337.0" mnemonicParsing="false" text="У меня очень слабый компьютер - Убираются все вспомогательные моды (сортировка инвентаря и т.д.)!" />
+      </children>
+    </Pane>
+  </children>
+</AnchorPane>
